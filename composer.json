@@ -1,6 +1,6 @@
 {
-    "name": "mendoframework/injector",
-    "description": "Mendo Injector Component",
+    "name": "gobline/injector",
+    "description": "Injector component",
     "license": "BSD-3-Clause",
     "authors": [
         {
@@ -9,13 +9,13 @@
         }
     ],
     "keywords": [
-        "mf", "mendoframework", "mendo framework",
+        "gobline", 
         "dependency injection", "trait"
     ],
-    "homepage": "https://github.com/mendoframework",
+    "homepage": "https://github.com/gobline",
     "autoload": {
         "psr-4": {
-            "Mendo\\Injector\\": "src/"
+            "Gobline\\Injector\\": "src/"
         }
     },
     "require": {

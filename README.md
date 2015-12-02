@@ -1,11 +1,11 @@
-# Injector Component - Mendo Framework
+# Injector component
 
-The Mendo Injector component allows you to inject dependencies with [Traits](http://php.net/manual/en/language.oop5.traits.php).
+The Injector component allows you to inject dependencies with [Traits](http://php.net/manual/en/language.oop5.traits.php).
 
 ## Usage
 
 ```php
-$injector = (new Mendo\Injector\TraitDependencyInjector())
+$injector = (new Gobline\Injector\TraitDependencyInjector())
     ->register("Dependency\\ServiceATrait", function ($o) use ($dic) { $o->setServiceA($dic['service.a']); });
     ->register("Dependency\\ServiceBTrait", function ($o) use ($dic) { $o->setServiceB($dic['service.b']); });
 
@@ -18,9 +18,9 @@ In order to do so, the injector makes use of [reflection](http://php.net/manual/
 
 ## Installation
 
-You can install Mendo Injector using the dependency management tool [Composer](https://getcomposer.org/).
+You can install the Injector component using the dependency management tool [Composer](https://getcomposer.org/).
 Run the *require* command to resolve and download the dependencies:
 
 ```
-composer require mendoframework/injector
+composer require gobline/injector
 ```

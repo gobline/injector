@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Mendo Framework
+ * Gobline Framework
  *
  * (c) Mathieu Decaffmeyer <mdecaffmeyer@gmail.com>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-use Mendo\Injector\TraitDependencyInjector;
+use Gobline\Injector\TraitDependencyInjector;
 
 /**
  * @author Mathieu Decaffmeyer <mdecaffmeyer@gmail.com>
