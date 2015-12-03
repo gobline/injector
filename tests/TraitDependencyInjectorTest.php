@@ -25,8 +25,8 @@ class TraitDependencyInjectorTest extends PHPUnit_Framework_TestCase
 
     public function testInjectAllDependencies()
     {
-        $this->injector->register("CatTrait", function ($o) { $o->setCat(new Cat()); });
-        $this->injector->register("DogTrait", function ($o) { $o->setDog(new Dog()); });
+        $this->injector->register('CatTrait', function ($o) { $o->setCat(new Cat()); });
+        $this->injector->register('DogTrait', function ($o) { $o->setDog(new Dog()); });
 
         $petstore = new Petstore();
 
@@ -42,7 +42,7 @@ class TraitDependencyInjectorTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\Exception', "I don't have any more 'dog' for you.");
 
-        $this->injector->register("CatTrait", function ($o) { $o->setCat(new Cat()); });
+        $this->injector->register('CatTrait', function ($o) { $o->setCat(new Cat()); });
 
         $petstore = new Petstore();
 
@@ -54,10 +54,10 @@ class TraitDependencyInjectorTest extends PHPUnit_Framework_TestCase
 
     public function testInjectAllDependenciesChildClass()
     {
-        $this->injector->register("CatTrait", function ($o) { $o->setCat(new Cat()); });
-        $this->injector->register("DogTrait", function ($o) { $o->setDog(new Dog()); });
-        $this->injector->register("SnakeTrait", function ($o) { $o->setSnake(new Snake()); });
-        $this->injector->register("TurtleTrait", function ($o) { $o->setTurtle(new Turtle()); });
+        $this->injector->register('CatTrait', function ($o) { $o->setCat(new Cat()); });
+        $this->injector->register('DogTrait', function ($o) { $o->setDog(new Dog()); });
+        $this->injector->register('SnakeTrait', function ($o) { $o->setSnake(new Snake()); });
+        $this->injector->register('TurtleTrait', function ($o) { $o->setTurtle(new Turtle()); });
 
         $petstore = new BiggerPetstore();
 
@@ -75,9 +75,9 @@ class TraitDependencyInjectorTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\Exception', "I don't have any more 'dog' for you.");
 
-        $this->injector->register("CatTrait", function ($o) { $o->setCat(new Cat()); });
-        $this->injector->register("SnakeTrait", function ($o) { $o->setSnake(new Snake()); });
-        $this->injector->register("TurtleTrait", function ($o) { $o->setTurtle(new Turtle()); });
+        $this->injector->register('CatTrait', function ($o) { $o->setCat(new Cat()); });
+        $this->injector->register('SnakeTrait', function ($o) { $o->setSnake(new Snake()); });
+        $this->injector->register('TurtleTrait', function ($o) { $o->setTurtle(new Turtle()); });
 
         $petstore = new BiggerPetstore();
 
@@ -95,9 +95,9 @@ class TraitDependencyInjectorTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\Exception', "I don't have any more 'snake' for you.");
 
-        $this->injector->register("DogTrait", function ($o) { $o->setDog(new Dog()); });
-        $this->injector->register("CatTrait", function ($o) { $o->setCat(new Cat()); });
-        $this->injector->register("TurtleTrait", function ($o) { $o->setTurtle(new Turtle()); });
+        $this->injector->register('DogTrait', function ($o) { $o->setDog(new Dog()); });
+        $this->injector->register('CatTrait', function ($o) { $o->setCat(new Cat()); });
+        $this->injector->register('TurtleTrait', function ($o) { $o->setTurtle(new Turtle()); });
 
         $petstore = new BiggerPetstore();
 
@@ -115,79 +115,91 @@ class TraitDependencyInjectorTest extends PHPUnit_Framework_TestCase
 trait DogTrait
 {
     private $dog;
+
     public function setDog(Dog $dog)
     {
         $this->dog = $dog;
     }
+
     public function getDog()
     {
         if (!$this->dog) {
             throw new \Exception("I don't have any more 'dog' for you.");
         }
+
         return $this->dog;
     }
 }
 trait CatTrait
 {
     private $cat;
+
     public function setCat(Cat $cat)
     {
         $this->cat = $cat;
     }
+
     public function getCat()
     {
         if (!$this->cat) {
             throw new \Exception("I don't have any more 'cat' for you.");
         }
+
         return $this->cat;
     }
 }
 trait SnakeTrait
 {
     private $snake;
+
     public function setSnake(Snake $snake)
     {
         $this->snake = $snake;
     }
+
     public function getSnake()
     {
         if (!$this->snake) {
             throw new \Exception("I don't have any more 'snake' for you.");
         }
+
         return $this->snake;
     }
 }
 trait TurtleTrait
 {
     private $turtle;
+
     public function setTurtle(Turtle $turtle)
     {
         $this->turtle = $turtle;
     }
+
     public function getTurtle()
     {
         if (!$this->turtle) {
             throw new \Exception("I don't have any more 'turtle' for you.");
         }
+
         return $this->turtle;
     }
 }
 
 class Dog
 {
-    public $name = "doggy";
+    public $name = 'doggy';
 }
 class Cat
 {
-    public $name = "kitten";
+    public $name = 'kitten';
 }
 class Turtle
 {
-    public $name = "raphael";
+    public $name = 'raphael';
 }
 class Snake
 {
-    public $name = "trouser";
+    public $name = 'trouser';
 }
 
 class Petstore
