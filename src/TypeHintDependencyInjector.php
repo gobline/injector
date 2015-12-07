@@ -16,13 +16,6 @@ namespace Gobline\Injector;
  */
 class TypeHintDependencyInjector
 {
-    private $callbackOnCreateDependency;
-
-    public function __construct(callable $callbackOnCreateDependency = null)
-    {
-        $this->callbackOnCreateDependency = $callbackOnCreateDependency ?: [$this, 'create'];
-    }
-
     public function create($className)
     {
         $metaClass = new \ReflectionClass($className);
@@ -36,25 +29,18 @@ class TypeHintDependencyInjector
         return $metaClass->newInstanceArgs($arguments);
     }
 
-    public function resolveDependencies($method, $positions = [])
+    public function resolveDependencies($method)
     {
         $method = new \ReflectionMethod($method[0], $method[1]);
 
         $dependencies = [];
 
-        $pos = 0;
-        foreach ($method->getParameters() as $metaParameter) {
-            $parameterName = $metaParameter->getName();
-
-            if (!isset($metaParameter->getClass()->name)) {
-                if ($positions) {
-                    continue;
-                }
+        foreach ($method->getParameters() as $parameter) {
+            if (!isset($parameter->getClass()->name)) {
                 break;
             }
-            if (!$positions || in_array($pos, $positions)) {
-                $dependencies[$pos++] = call_user_func($this->callbackOnCreateDependency, $metaParameter->getClass()->name);
-            }
+
+            $dependencies[] = $this->create($parameter->getClass()->name);
         }
 
         return $dependencies;
